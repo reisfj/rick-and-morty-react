@@ -84,5 +84,3 @@ git push -u origin main
 Este projeto está licenciado sob a licença MIT.
 
 ---
-
-Caso deseje que os arquivos `.gitkeep`, estrutura completa e configurações sejam geradas em um `.zip`, posso gerar para você.
