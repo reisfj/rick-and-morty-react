@@ -13,7 +13,7 @@ Este é um modelo base para iniciar projetos React com Vite, ChakraUI v2, React 
 ## 📦 Tecnologias Utilizadas
 - ⚡ [Vite](https://vitejs.dev/)
 - ⚛️ [React + TypeScript](https://react.dev/learn)
-- 💅 [Chakra UI v2](https://chakra-ui.com/docs/components](https://v2.chakra-ui.com))
+- 💅 [Chakra UI v2](https://chakra-ui.com/docs/components)
 - 🌐 [React Router DOM](https://reactrouter.com/en/main)
 - 📡 [Axios](https://axios-http.com/)
 
