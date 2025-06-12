@@ -1,18 +1,12 @@
-import { Box, Heading, Text, Center } from "@chakra-ui/react";
+import {useRoutes} from 'react-router-dom';
+import routes from './routes';
+
+
 
 function App() {
-  return (
-    <Center minH="100vh" bg="surface.dark">
-      <Box p={8} bg="surface.light" borderRadius="lg" boxShadow="lg" textAlign="center">
-        <Heading as="h1" size="xl" mb={4} color="brand.primary">
-          Bem-vindo!
-        </Heading>
-        <Text fontSize="lg" color="brand.secondary">
-          Esta é uma página modelo, agora personalize da sua forma.
-        </Text>
-      </Box>
-    </Center>
-  );
+  const routing = useRoutes(routes)
+  
+  return <>{routing}</>
 }
 
 export default App;
