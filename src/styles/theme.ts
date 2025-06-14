@@ -4,13 +4,14 @@ const theme = extendTheme({
   // Crie aqui seu tema customizado do ChakraUI
   colors: {
     brand: {
-       primary: '#d10039',
-       secondary: '#2a252c'
+      primary: '#1e1e26',
+      secondary: '#5F4B8B'
     },
     surface: {
       light: '#d9d9d9',
       dark: '#1e1e26'
-    }
+    },
+    
   },
 })
 

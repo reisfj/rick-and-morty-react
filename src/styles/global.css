@@ -25,3 +25,25 @@ img, picture, video, canvas, svg {
 input, button, textarea, select {
   font: inherit;
 }
+
+.nav-effect::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, #7fc447, transparent);
+  background-size: 200% auto;
+  animation: slide-line 2s linear infinite;
+}
+
+@keyframes slide-line {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
