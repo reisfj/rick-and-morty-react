@@ -4,13 +4,19 @@ import {
   ButtonGroup,
   Flex,
   Heading,
+  IconButton,
   Image,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Spacer,
 } from '@chakra-ui/react'
 import slimeImage from '../assets/img/slime1.png'
 import logo from '../assets/img/logo-rick-morty.png'
 import '../styles/global.css'
 import { Link } from 'react-router-dom'
+import { HamburgerIcon } from '@chakra-ui/icons'
 
 export default function Navbar() {
   return (
@@ -25,14 +31,23 @@ export default function Navbar() {
         borderBottom="1px solid transparent"
         position="relative"
       >
-        <Box pl={{base: 4, md: 0}}>
+        <Box pl={{ base: 4, md: 0 }}>
           <Heading alignItems="center">
-            <Image src={logo} alt="Rick and Morty" w={{base: '8rem', md: '13.5rem',}} />
+            <Image
+              src={logo}
+              alt="Rick and Morty"
+              w={{ base: '8rem', md: '13.5rem' }}
+            />
           </Heading>
         </Box>
         <Spacer />
-        <ButtonGroup gap="2" pr="5px" pt="5px">
-          <Button            
+        <ButtonGroup
+          gap="2"
+          pr="5px"
+          pt="5px"
+          display={['none', 'none', 'flex', 'flex']}
+        >
+          <Button
             border="1px solid #fff"
             bg="brand.primary"
             color="white"
@@ -67,6 +82,26 @@ export default function Navbar() {
             <Link to="/characters">Personagens</Link>
           </Button>
         </ButtonGroup>
+        <Flex mr={4} display={['flex', 'flex', 'none', 'none']}>
+          <Menu>
+            <MenuButton
+              as={IconButton}
+              aria-label="Options"
+              icon={<HamburgerIcon />}
+              variant="outline"
+              color="white"
+              _active={{
+                bg: '#7fc447',
+                color: '#1e1e26',
+                border: '1px solid #1e1e26',
+              }}
+            />
+            <MenuList  color="black" fontWeight="600">
+              <MenuItem w="150px">Home</MenuItem>
+              <MenuItem w="150px">Personagens</MenuItem>
+            </MenuList>
+          </Menu>
+        </Flex>
       </Flex>
     </Box>
   )
