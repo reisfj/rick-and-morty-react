@@ -9,7 +9,7 @@ function App() {
   const routing = useRoutes(routes)
   
   return (
-    <Box minH="100vh" bgColor="brand.primary">
+    <Box >
       <Navbar />
       <>{routing}</>
     </Box>

@@ -11,7 +11,25 @@ const theme = extendTheme({
       dark: '#1e1e26'
     }
   },
-  
+
+  styles: {
+    global: {
+      html: {
+        height: '100%',
+      },
+      body: {
+        bg: 'brand.primary', 
+        color: 'white',
+        minHeight: '100vh',
+        margin: 0,
+        padding: 0,
+      },
+      '#root': {
+        height: '100%',
+        minHeight: '100vh',
+      },
+    },
+  },
 })
 
 export default theme

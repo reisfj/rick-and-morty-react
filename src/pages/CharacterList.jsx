@@ -10,9 +10,9 @@ export default function CharacterList(){
 
     return (
       <Box p={4}>
-        <UnorderedList spacing={3} pl={4}>
+        <UnorderedList  spacing={3} pl={4}>
           {characters.map((character) => (
-            <ListItem key={character.id} fontWeight="medium" color="gray.700">
+            <ListItem key={character.id} fontWeight="medium" color="white">
               {character.name}
             </ListItem>
           ))}

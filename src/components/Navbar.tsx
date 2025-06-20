@@ -20,19 +20,19 @@ export default function Navbar() {
         alignItems="center"
         justify="center"
         h="5rem"
-        px={16}
-        mx={16}
+        px={{ base: 0, md: 16 }}
+        mx={{ base: 0, md: 2 }}
         borderBottom="1px solid transparent"
         position="relative"
       >
-        <Box pl="5">
+        <Box pl={{base: 4, md: 0}}>
           <Heading alignItems="center">
-            <Image src={logo} alt="Rick and Morty" w="13.5rem" />
+            <Image src={logo} alt="Rick and Morty" w={{base: '8rem', md: '13.5rem',}} />
           </Heading>
         </Box>
         <Spacer />
         <ButtonGroup gap="2" pr="5px" pt="5px">
-          <Button
+          <Button            
             border="1px solid #fff"
             bg="brand.primary"
             color="white"
