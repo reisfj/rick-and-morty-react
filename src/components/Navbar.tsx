@@ -19,36 +19,51 @@ export default function Navbar() {
         minWidth="max-content"
         alignItems="center"
         justify="center"
-        gap="2"
         h="5rem"
+        px={16}
+        mx={16}
         borderBottom="1px solid transparent"
         position="relative"
       >
-        <Box pl="12">
+        <Box pl="5">
           <Heading alignItems="center">
             <Image src={logo} alt="Rick and Morty" w="13.5rem" />
           </Heading>
         </Box>
         <Spacer />
-        <ButtonGroup
-          gap="2"
-          pr="12"
-          pt="5px"
-          colorScheme="#313B64"
-          textColor="#ffffff"
-        >
-          <Button border="1px solid #fff">
-            <Link to="/">Home</Link>
-            <Image
-              src={slimeImage}
-              w="45px"
-              position="absolute"
-              top="-3"
-              right="10"
-              alt="Rick and Morty"
-            />
+        <ButtonGroup gap="2" pr="5px" pt="5px">
+          <Button
+            border="1px solid #fff"
+            bg="brand.primary"
+            color="white"
+            _hover={{
+              bg: '#7fc447',
+              color: '#1e1e26',
+              border: '1px solid #1e1e26',
+            }}
+          >
+            <Link to="/">
+              <Image
+                src={slimeImage}
+                w="40px"
+                position="absolute"
+                top="-3"
+                right="10"
+                alt="Rick and Morty"
+              />
+              Home
+            </Link>
           </Button>
-          <Button border="1px solid #fff">
+          <Button
+            border="1px solid #fff"
+            bg="brand.primary"
+            color="white"
+            _hover={{
+              bg: '#7fc447',
+              color: '#1e1e26',
+              border: '1px solid #1e1e26',
+            }}
+          >
             <Link to="/characters">Personagens</Link>
           </Button>
         </ButtonGroup>
