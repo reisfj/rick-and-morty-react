@@ -97,8 +97,8 @@ export default function Navbar() {
               }}
             />
             <MenuList  color="black" fontWeight="600">
-              <MenuItem w="150px">Home</MenuItem>
-              <MenuItem w="150px">Personagens</MenuItem>
+              <MenuItem >Home</MenuItem>
+              <MenuItem >Personagens</MenuItem>
             </MenuList>
           </Menu>
         </Flex>
