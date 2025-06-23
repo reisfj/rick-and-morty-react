@@ -31,7 +31,7 @@ export default function Navbar() {
         borderBottom="1px solid transparent"
         position="relative"
       >
-        <Link to="/">
+       <Link to="/">
         <Box pl={{ base: 4, md: 0 }}>
           <Heading alignItems="center">
             <Image
@@ -101,8 +101,8 @@ export default function Navbar() {
               }}
             />
             <MenuList  color="black" fontWeight="600">
-              <MenuItem >Home</MenuItem>
-              <MenuItem >Personagens</MenuItem>
+            <Link to="/"> <MenuItem >Home</MenuItem> </Link>
+            <Link to="/characters">  <MenuItem >Personagens</MenuItem> </Link>
             </MenuList>
           </Menu>
         </Flex>
