@@ -15,7 +15,7 @@ export default function Home() {
         px={{ base: 6, md: 12 }}
         py={{ base: 8, md: 0 }}
       >
-        {/* Texto */}
+        
         <Box
           bg="brand.primary"
           color="white"
@@ -35,6 +35,7 @@ export default function Home() {
             Aqui você terá acesso a centenas de personagens, imagens, locais e
             episódios, clique agora para novas descobertas.
           </Text>
+          <Link to="/characters">
           <Button
             width={{ base: '100%', sm: '200px' }}
             height="40px"
@@ -47,8 +48,9 @@ export default function Home() {
               border: '1px solid #1e1e26',
             }}
           >
-            <Link to="/characters">Saiba mais</Link>
+            Saiba mais
           </Button>
+            </Link>
         </Box>
 
         {/* Imagem */}
@@ -56,7 +58,7 @@ export default function Home() {
           <Image
             src="svg/rick-morty-portal1.svg"
             alt="portal"
-            w={{ base: '100%', sm: '300px', md: '430px' }}
+            w={{ sm: '300px', lg: '450px' }}
             mx={{ base: 'auto', md: 0 }}
           />
         </Box>
