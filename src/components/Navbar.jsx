@@ -31,15 +31,17 @@ export default function Navbar() {
         borderBottom="1px solid transparent"
         position="relative"
       >
+        <Link to="/">
         <Box pl={{ base: 4, md: 0 }}>
           <Heading alignItems="center">
             <Image
               src={logo}
               alt="Rick and Morty"
               w={{ base: '8rem', md: '13.5rem' }}
-            />
+              />
           </Heading>
         </Box>
+        </Link>
         <Spacer />
         <ButtonGroup
           gap="2"
@@ -47,6 +49,7 @@ export default function Navbar() {
           pt="5px"
           display={['none', 'none', 'flex', 'flex']}
         >
+          <Link to="/">
           <Button
             border="1px solid #fff"
             bg="brand.primary"
@@ -57,7 +60,6 @@ export default function Navbar() {
               border: '1px solid #1e1e26',
             }}
           >
-            <Link to="/">
               <Image
                 src={slimeImage}
                 w="40px"
@@ -67,8 +69,9 @@ export default function Navbar() {
                 alt="Rick and Morty"
               />
               Home
-            </Link>
           </Button>
+            </Link>
+            <Link to="/characters">
           <Button
             border="1px solid #fff"
             bg="brand.primary"
@@ -78,9 +81,10 @@ export default function Navbar() {
               color: '#1e1e26',
               border: '1px solid #1e1e26',
             }}
-          >
-            <Link to="/characters">Personagens</Link>
+          >            
+            Personagens
           </Button>
+            </Link>
         </ButtonGroup>
         <Flex mr={4} display={['flex', 'flex', 'none', 'none']}>
           <Menu>
