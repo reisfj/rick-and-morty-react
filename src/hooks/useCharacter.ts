@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { getCharacters } from '../services/charactersService';
+import { Character } from '../typings/character';
 
 export function useCharacter(search = '') {
-    const [characters, setCharacters] = useState<string[]>([]);
+    const [characters, setCharacters] = useState<Character[]>([]);
     const [nextUrl, setNextUrl] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);

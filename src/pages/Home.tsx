@@ -53,7 +53,7 @@ export default function Home() {
             </Link>
         </Box>
 
-        {/* Imagem */}
+        
         <Box flexShrink={0}>
           <Image
             src="svg/rick-morty-portal1.svg"

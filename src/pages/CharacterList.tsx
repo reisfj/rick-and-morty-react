@@ -2,7 +2,6 @@ import { useState } from 'react'
 import {
   Box,
   Button,
-  Flex,
   ListItem,
   Spinner,
   Text,
@@ -42,7 +41,7 @@ export default function CharacterList() {
 
       <UnorderedList
         display="flex"
-        align="center"
+        alignItems="center"
         justifyContent="center"
         gap={4}
         flexWrap="wrap"
