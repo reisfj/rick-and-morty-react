@@ -15,10 +15,9 @@ export default function Home() {
         px={{ base: 6, md: 12 }}
         py={{ base: 8, md: 0 }}
       >
-        
         <Box
           bg="brand.primary"
-          color="white"
+          color="brand.text"
           p={{ base: 4, md: 6 }}
           flex="1"
           textAlign={{ base: 'center', md: 'left' }}
@@ -36,24 +35,16 @@ export default function Home() {
             episódios, clique agora para novas descobertas.
           </Text>
           <Link to="/characters">
-          <Button
-            width={{ base: '100%', sm: '200px' }}
-            height="40px"
-            border="1px solid #fff"
-            bg="brand.primary"
-            color="white"
-            _hover={{
-              bg: '#7fc447',
-              color: '#1e1e26',
-              border: '1px solid #1e1e26',
-            }}
-          >
-            Saiba mais
-          </Button>
-            </Link>
+            <Button
+              width={{ base: '100%', sm: '200px' }}
+              height="40px"
+              variant="solidPrimary"
+            >
+              Saiba mais
+            </Button>
+          </Link>
         </Box>
 
-        
         <Box flexShrink={0}>
           <Image
             src="svg/rick-morty-portal1.svg"

@@ -10,7 +10,8 @@ const theme = extendTheme({
   colors: {
     brand: {
       primary: '#1e1e26',
-      secondary: '#5F4B8B'
+      secondary: '#7fc447',
+      text: "#ffffff"
     },
     surface: {
       light: '#d9d9d9',
@@ -36,6 +37,24 @@ const theme = extendTheme({
       },
     },
   },
+
+  components: {
+    Button: {
+      variants: {
+        solidPrimary: {
+          border: "1px solid #fff",
+          bg: "brand.primary",
+          color: "brand.text",
+          _hover: {
+            bg: 'brand.secondary',
+            color: 'brand.primary',
+            border: '1px solid',
+          },
+        },
+      },
+    },
+  },
+
 })
 
 export default theme

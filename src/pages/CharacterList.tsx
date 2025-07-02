@@ -33,7 +33,7 @@ export default function CharacterList() {
           top="50%"
           left="50%"
           size="lg"
-          color="#7fc447"
+          color="brand.secondary"
         />
       )}
 
@@ -48,13 +48,16 @@ export default function CharacterList() {
         maxW="900px"
       >
         {characters.map((character) => (
+          
           <ListItem
             key={character.id}
             fontWeight="medium"
-            color="white"
+            color="brand.text"
             listStyleType="none"
           >
+            
             <Card
+              id={character.id}
               image={character.image}
               name={character.name}
               episode={character.episode.length}
@@ -62,19 +65,25 @@ export default function CharacterList() {
               species={character.species}
               origin={character.origin.name}
               location={character.location.name}
-            />
+              />
+            
           </ListItem>
         ))}
       </UnorderedList>
 
       {hasNextPage && (
-        <Button mt={4} onClick={loadNextPage} isLoading={loading}>
+        <Button
+          mt={4}
+          variant="solidPrimary"
+          onClick={loadNextPage}
+          isLoading={loading}
+        >
           Visualizar mais
         </Button>
       )}
 
       {!hasNextPage && characters.length > 0 && (
-        <Text mt={4} color="gray.500">
+        <Text mt={4} color="brand.text">
           Não há mais personagens.
         </Text>
       )}
