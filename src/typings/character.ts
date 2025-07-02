@@ -2,7 +2,7 @@ export interface Character {
     id: number;
     image: string;
     name: string;
-    episode: string;
+    episode: string[];
     status: string;
     species: string;
     origin: {
