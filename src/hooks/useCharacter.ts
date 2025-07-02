@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { getCharacters } from '../services/charactersService';
 import { Character } from '../typings/character';
+import { useDebounce } from './useDebounce';
 
 export function useCharacter(search = '') {
     const [characters, setCharacters] = useState<Character[]>([]);
@@ -8,11 +9,12 @@ export function useCharacter(search = '') {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const hasFetched = useRef(false);
+    const debouncedSearch = useDebounce(search, 300)
 
     const fetchCharacters = (url?: string, isNewSearch = false) => {
         setLoading(true);
 
-        const fetchUrl = url ?? `https://rickandmortyapi.com/api/character?name=${search}`;
+        const fetchUrl = url ?? `https://rickandmortyapi.com/api/character?name=${debouncedSearch}`;
 
         getCharacters(fetchUrl)
             .then((res) => {
@@ -36,10 +38,8 @@ export function useCharacter(search = '') {
     }, []);
 
     useEffect(() => {
-        if (search !== '') {
-            fetchCharacters(undefined, true);
-        }
-    }, [search]);
+        fetchCharacters(undefined, true);     
+    }, [debouncedSearch]);
 
     return {
         characters,
