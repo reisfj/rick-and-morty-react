@@ -1,9 +1,9 @@
 import { Box, Flex, Image, Text } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 
-export default function Card({ id, ...character }) {
+export default function Card({ id, character }) {
   return (
-    <Link to={`/details/${id}`} >
+    <Link to={`/details/${id}`} state={{ character }}>
       <Box
         cursor="pointer"
         h="500"
@@ -28,7 +28,7 @@ export default function Card({ id, ...character }) {
           />
           <Text>Nome: {character.name}</Text>
           <Text>
-            Episódios: {character.episode} <br />
+            Episódios: {character.episode.length} <br />
           </Text>
           <Flex gap={4}>
             <Text>
@@ -41,12 +41,12 @@ export default function Card({ id, ...character }) {
           <Flex gap={4} align="flex-start" justify="space-between" w="full">
             <Box textAlign="left">
               <Text>Origin</Text>
-              <Text fontWeight="bold">{character.origin}</Text>
+              <Text fontWeight="bold">{character.origin.name}</Text>
             </Box>
 
             <Box textAlign="left">
               <Text>Location</Text>
-              <Text fontWeight="bold">{character.location}</Text>
+              <Text fontWeight="bold">{character.location.name}</Text>
             </Box>
           </Flex>
         </Flex>

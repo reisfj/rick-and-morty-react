@@ -48,25 +48,13 @@ export default function CharacterList() {
         maxW="900px"
       >
         {characters.map((character) => (
-          
           <ListItem
             key={character.id}
             fontWeight="medium"
             color="brand.text"
             listStyleType="none"
           >
-            
-            <Card
-              id={character.id}
-              image={character.image}
-              name={character.name}
-              episode={character.episode.length}
-              status={character.status}
-              species={character.species}
-              origin={character.origin.name}
-              location={character.location.name}
-              />
-            
+            <Card id={character.id} character={character} />
           </ListItem>
         ))}
       </UnorderedList>

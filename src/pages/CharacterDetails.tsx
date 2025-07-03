@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { Box, Flex, Spinner, Text } from '@chakra-ui/react'
 import { getCharacters } from '../services/charactersService'
@@ -7,16 +7,20 @@ import { Character } from '../typings/character'
 
 export default function CharacterDetails() {
   const { id } = useParams()
-  const [character, setCharacter] = useState<Character | null>(null)
-  const [loading, setLoading] = useState(true)
+  const location = useLocation()
+  const [character, setCharacter] = useState<Character | null>(
+    location.state?.character || null
+  )
+  const [loading, setLoading] = useState(!character)
+  
 
   useEffect(() => {
-    if (!id) return
-    
-    getCharacters(`https://rickandmortyapi.com/api/character/${id}`)
-      .then((res) => setCharacter(res.data))
-      .finally(() => setLoading(false))
-  }, [id])
+    if (!character && id) {
+      getCharacters(`https://rickandmortyapi.com/api/character/${id}`)
+        .then((res) => setCharacter(res.data))
+        .finally(() => setLoading(false))
+    }
+  }, [character, id])
 
   if (loading || !character) {
     return (
@@ -40,16 +44,7 @@ export default function CharacterDetails() {
       justify="center"
       align={{ base: 'center', sm: 'flex-start' }}
     >
-      <Card
-        id={character.id}
-        image={character.image}
-        name={character.name}
-        episode={character.episode.length}
-        status={character.status}
-        species={character.species}
-        origin={character.origin.name}
-        location={character.location.name}
-      />
+      <Card id={character.id} character={character} />
 
       <Box
         w={{ base: '100%', md: '60%' }}
