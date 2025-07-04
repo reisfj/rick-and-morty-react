@@ -4,6 +4,8 @@ import { Box, Flex, Spinner, Text } from '@chakra-ui/react'
 import { getCharacters } from '../services/charactersService'
 import Card from '../components/Card'
 import { Character } from '../typings/character'
+import { Episode } from '../typings/episode'
+
 
 export default function CharacterDetails() {
   const { id } = useParams()
@@ -12,7 +14,9 @@ export default function CharacterDetails() {
     location.state?.character || null
   )
   const [loading, setLoading] = useState(!character)
+  const [episode, setEpisode] = useState<Episode[]>([])
   
+
 
   useEffect(() => {
     if (!character && id) {
@@ -21,6 +25,27 @@ export default function CharacterDetails() {
         .finally(() => setLoading(false))
     }
   }, [character, id])
+
+
+  useEffect(() => {
+    if (character) {
+      const episodes = character.episode.map((epUrl) =>
+        epUrl.split('/').pop()
+      ) as string[]
+
+      getCharacters(`https://rickandmortyapi.com/api/episode/${episodes}`)
+        .then((res) => {
+          const data = res.data
+          const normalized = Array.isArray(data) ? data : [data]
+          setEpisode(normalized)
+        })
+        .finally(() => setLoading(false))
+    }
+  }, [character])
+  
+
+ 
+  
 
   if (loading || !character) {
     return (
@@ -35,6 +60,8 @@ export default function CharacterDetails() {
     )
   }
 
+ 
+
   return (
     <Flex
       direction={{ base: 'column', sm: 'row' }}
@@ -48,7 +75,7 @@ export default function CharacterDetails() {
 
       <Box
         w={{ base: '100%', md: '60%' }}
-        h={{ base: 'auto', sm: '500px' }}
+        h={{ base: '500px', sm: '500px' }}
         overflowY="auto"
         border="1px solid #ccc"
         p={4}
@@ -58,14 +85,24 @@ export default function CharacterDetails() {
         <Text fontSize="xl" fontWeight="bold" mb={4}>
           Episódios
         </Text>
-        {character.episode.map((epUrl) => {
-          const epNumber = epUrl.split('/').pop()
-          return (
-            <Text key={epUrl} fontSize="md" mb={2}>
-              Episódio {epNumber}
+
+        {episode?.map((ep) => (
+          <Box
+            w={{ base: '100%', md: '100%' }}
+            h={{ base: 'auto', sm: 'auto' }}
+            overflowY="auto"
+            border="1px solid #ccc"
+            p={4}
+            borderRadius="md"
+            bg="brand.primary"
+            mb={2}
+          >
+            <Text key={ep.id} fontSize="md" fontWeight="bold" mb={2}>
+              Episódio {ep.id}: {ep.name} <br /> Lançamento: {ep.air_date}
+              <br /> Episódio: {ep.episode}
             </Text>
-          )
-        })}
+          </Box>
+        ))}
       </Box>
     </Flex>
   )

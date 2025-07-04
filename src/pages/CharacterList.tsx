@@ -59,7 +59,7 @@ export default function CharacterList() {
         ))}
       </UnorderedList>
 
-      {hasNextPage && (
+      {!error && hasNextPage && (
         <Button
           mt={4}
           variant="solidPrimary"
