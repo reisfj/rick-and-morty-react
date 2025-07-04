@@ -53,6 +53,22 @@ const theme = extendTheme({
         },
       },
     },
+    Spinner: {
+      variants: {
+        solidPrimary: {
+          display: "flex",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)", 
+          color: "brand.secondary", 
+        },
+      },
+      defaultProps: {
+        size: "lg", 
+        variant: "solidPrimary",
+      },
+    },
   },
 
 })

@@ -4,7 +4,7 @@ import { Box, Flex, Spinner, Text } from '@chakra-ui/react'
 import { getCharacters } from '../services/charactersService'
 import Card from '../components/Card'
 import { Character } from '../typings/character'
-import { Episode } from '../typings/episode'
+import { useCharacterEpisodes } from '../hooks/useCharacterEpisodes'
 
 
 export default function CharacterDetails() {
@@ -14,38 +14,22 @@ export default function CharacterDetails() {
     location.state?.character || null
   )
   const [loading, setLoading] = useState(!character)
-  const [episode, setEpisode] = useState<Episode[]>([])
-  
 
+  const {
+    episodes,
+    loading: episodesLoading,
+    error: episodesError,
+  } = useCharacterEpisodes(character!)
 
   useEffect(() => {
     if (!character && id) {
+      setLoading(true)
       getCharacters(`https://rickandmortyapi.com/api/character/${id}`)
         .then((res) => setCharacter(res.data))
+        .catch((err) => console.error('Erro ao buscar personagem:', err))
         .finally(() => setLoading(false))
     }
-  }, [character, id])
-
-
-  useEffect(() => {
-    if (character) {
-      const episodes = character.episode.map((epUrl) =>
-        epUrl.split('/').pop()
-      ) as string[]
-
-      getCharacters(`https://rickandmortyapi.com/api/episode/${episodes}`)
-        .then((res) => {
-          const data = res.data
-          const normalized = Array.isArray(data) ? data : [data]
-          setEpisode(normalized)
-        })
-        .finally(() => setLoading(false))
-    }
-  }, [character])
-  
-
- 
-  
+  }, [id])
 
   if (loading || !character) {
     return (
@@ -59,8 +43,6 @@ export default function CharacterDetails() {
       />
     )
   }
-
- 
 
   return (
     <Flex
@@ -86,23 +68,40 @@ export default function CharacterDetails() {
           Episódios
         </Text>
 
-        {episode?.map((ep) => (
-          <Box
-            w={{ base: '100%', md: '100%' }}
-            h={{ base: 'auto', sm: 'auto' }}
-            overflowY="auto"
-            border="1px solid #ccc"
-            p={4}
-            borderRadius="md"
-            bg="brand.primary"
-            mb={2}
-          >
-            <Text key={ep.id} fontSize="md" fontWeight="bold" mb={2}>
-              Episódio {ep.id}: {ep.name} <br /> Lançamento: {ep.air_date}
-              <br /> Episódio: {ep.episode}
-            </Text>
-          </Box>
-        ))}
+        {episodesLoading && <Spinner variant="solidPrimary" />}
+
+        {episodesError && (
+          <Text color="red.400" fontSize="md" mb={2}>
+            Erro ao carregar episódios: {episodesError}
+          </Text>
+        )}
+
+        {!episodesLoading &&
+          !episodesError &&
+          episodes.length > 0 &&
+          episodes.map((ep) => (
+            <Box
+              w={{ base: '100%', md: '100%' }}
+              h={{ base: 'auto', sm: 'auto' }}
+              overflowY="auto"
+              border="1px solid #ccc"
+              p={4}
+              borderRadius="md"
+              bg="brand.primary"
+              mb={2}
+            >
+              <Text key={ep.id} fontSize="md" fontWeight="bold" mb={2}>
+                Episódio {ep.id}: {ep.name} <br /> Lançamento: {ep.air_date}
+                <br /> Episódio: {ep.episode}
+              </Text>
+            </Box>
+          ))}
+
+        {!episodesLoading && !episodesError && episodes.length === 0 && (
+          <Text fontSize="md" color="gray.400">
+            Nenhum episódio encontrado.
+          </Text>
+        )}
       </Box>
     </Flex>
   )

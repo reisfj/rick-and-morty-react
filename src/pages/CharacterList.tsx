@@ -26,16 +26,7 @@ export default function CharacterList() {
     >
       <Search onSearch={setSearchTerm} />
 
-      {loading && characters.length === 0 && (
-        <Spinner
-          display="flex"
-          position="absolute"
-          top="50%"
-          left="50%"
-          size="lg"
-          color="brand.secondary"
-        />
-      )}
+      {loading && characters.length === 0 && <Spinner variant="solidPrimary" />}
 
       {error && <Text color="red.500">{error}</Text>}
 
